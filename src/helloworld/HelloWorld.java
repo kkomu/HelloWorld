@@ -5,15 +5,12 @@
  */
 package helloworld;
 
+
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -40,24 +37,26 @@ public class HelloWorld extends Application {
         root.getChildren().add(btn);
         */
         // The root is the main layout
+               
         VBox root = new VBox();
-        
-        Button closeButton = new Button("Close");
-        
-        Button saveButton = new Button("Save");
-        saveButton.setStyle("-fx-color:green");
-        
-        // Layout for button components
-        HBox buttonLayout = new HBox();
-        buttonLayout.setStyle("-fx-padding:10;-fx-spacing:10");
-        buttonLayout.getChildren().add(closeButton);
-        buttonLayout.getChildren().add(saveButton);
-        
+        //VBox.setMargin(root, new Insets(10,10,10,10));
         // Add layouts to the root node layout
-        root.getChildren().add(new TextFieldsPartial());
-        root.getChildren().add(buttonLayout);
+        
+        // Layout for all labels, textfields and textarea
+        HBox fields = new HBox();
+        
+        // Userinfo contains textArea
+        UserInfo user = new UserInfo();
+        
+        TextFieldsPartial textFields = new TextFieldsPartial();
+        
+        fields.getChildren().add(textFields);
+        fields.getChildren().add(user);
+        
+        root.getChildren().add(fields);
+        root.getChildren().add(new ButtonPartial(user,textFields));
                 
-        Scene scene = new Scene(root, 300, 250);
+        Scene scene = new Scene(root, 400, 400);
         
         primaryStage.setTitle("Idea");
         primaryStage.setScene(scene);
